@@ -11,10 +11,8 @@ class Base {
 
   Future<Database> get database async {
     if (_database != null) {
-      print('connect');
       return _database;
     }
-    print('database created');
     _database = await _initDB('notes.db');
     return _database;
   }

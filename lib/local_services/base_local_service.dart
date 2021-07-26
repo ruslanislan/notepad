@@ -9,19 +9,16 @@ abstract class BaseLocalService<T>{
 
   Future<T> create(T model) async {
     final Database db = await base.database;
-
     final id = await db.insert(tableName, serialize(model));
     return copy(model, id);
   }
 
   Future<T> getOne(int id) async {
     final db = await base.database;
-
     final maps = await db.query(tableName,
         columns: fieldList,
         where: '$fieldId = ?',
         whereArgs: [id]);
-
     if (maps.isNotEmpty) {
       return deserialize(maps.first);
     }
@@ -30,17 +27,12 @@ abstract class BaseLocalService<T>{
 
   Future<List<T>> getAll() async {
     final Database db = await base.database;
-
-    print("readAllNotes");
-    //final orderBy = '${N.updatedAt} ASC';
     final result = await db.query(tableNotes, orderBy: orderBy);
-
     return deserializeList(result);
   }
 
   Future<int> update(T model) async {
     final Database db = await base.database;
-
     return db.update(
       tableNotes,
       serialize(model),
