@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notepad/bloc/note/note_bloc.dart';
+import 'package:notepad/models/note.dart';
 
 class NoteAddPage extends StatelessWidget{
   @override
@@ -10,19 +13,13 @@ class NoteAddPage extends StatelessWidget{
         title: Text('Note Add Page'),
         centerTitle: true,
         actions: [IconButton(onPressed: (){
+          Note note = Note(name: nameController.text, content: contentController.text);
           try{
-            // getX((NoteProvider x) => x.addNote(Note(
-            //     name: nameController.text,
-            //     content: contentController.text,
-            //     createdAt: DateTime.now(),
-            //     updatedAt: DateTime.now()
-            // )));
+            BlocProvider.of<NoteBloc>(context).add(AddNote(note));
             Navigator.pop(context);
-            //print('dada');
           } catch (e){
-
+            throw Exception('Error in add note');
           }
-
         }, icon: Icon(Icons.save))],
       ),
       body: Container(
@@ -58,8 +55,5 @@ class NoteAddPage extends StatelessWidget{
         ),
       ),
     );
-  }
-  void onPressed() {
-
   }
 }

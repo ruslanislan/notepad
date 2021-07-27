@@ -1,7 +1,7 @@
-import 'package:notepad/local_services/base_local_service.dart';
+import 'package:notepad/local_services/local_service.dart';
 import 'package:notepad/models/note.dart';
 
-class NoteService extends BaseLocalService<Note> {
+class NoteService extends LocalService<Note> {
   @override
   serialize(Note model) {
     return model.toJson();
@@ -22,7 +22,7 @@ class NoteService extends BaseLocalService<Note> {
   List<String> get fieldList => NoteFields.values;
 
   @override
-  Note deserialize(Map<String, Object> json) {
+  Note deserialize(Map<String, Object?> json) {
     return Note.fromJson(json);
   }
 
@@ -30,13 +30,13 @@ class NoteService extends BaseLocalService<Note> {
   String get orderBy => '${NoteFields.updatedAt} ASC';
 
   @override
-  List<Note> deserializeList(List<Map<String, Object>> result) {
+  List<Note> deserializeList(List<Map<String, Object?>> result) {
     return result.map((e) => Note.fromJson(e)).toList();
   }
 
   @override
   int modelId(Note model) {
-    return model.id;
+    return model.id!;
   }
 }
 
