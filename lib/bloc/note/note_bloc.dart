@@ -50,7 +50,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       final notes = await _noteService.getAll();
       yield NotesLoaded(notes);
     } catch (e) {
-      yield NoteNotLoaded('updateError');
+      yield NoteNotLoaded('updateError $e');
     }
   }
 

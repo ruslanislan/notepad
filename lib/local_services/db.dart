@@ -26,18 +26,19 @@ class Db {
 
   Future _createDB(Database db, int version) async {
     final idType = "INTEGER PRIMARY KEY AUTOINCREMENT";
+    final uuidType = "TEXT PRIMARY KEY";
     final boolType = "BOOLEAN NOT NULL";
     final intType = "INTEGER NOT NULL";
     final textType = "TEXT NOT NULL";
-    final timestampType = 'DATETIME WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP';
+    final timestampType = 'DATETIME DEFAULT CURRENT_TIMESTAMP';
 
     await db.execute('''
     CREATE TABLE $tableNotes (
       ${NoteFields.id} $idType,
       ${NoteFields.name} $textType,
       ${NoteFields.content} $textType,
-      ${NoteFields.createdAt} $timestampType,
-      ${NoteFields.updatedAt} $timestampType
+      ${NoteFields.createdAt} $textType,
+      ${NoteFields.updatedAt} $textType
     )
     ''');
   }

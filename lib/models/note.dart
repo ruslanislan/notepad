@@ -32,12 +32,12 @@ class Note {
         updatedAt: json[NoteFields.updatedAt] as String,
       );
 
-  Map<String, Object> toJson() => {
-        //NoteFields.id: id,
+  Map<String, Object?> toJson() => {
+        NoteFields.id: id,
         NoteFields.name: name,
         NoteFields.content: content,
-        //NoteFields.createdAt: createdAt.toIso8601String(),
-        //NoteFields.updatedAt: updatedAt.toIso8601String(),
+        NoteFields.createdAt: createdAt,
+        NoteFields.updatedAt: updatedAt,
       };
 
   Note copy(

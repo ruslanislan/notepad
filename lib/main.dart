@@ -5,7 +5,7 @@ import 'package:notepad/app_consts/route_consts.dart';
 import 'package:notepad/bloc/note/note_bloc.dart';
 import 'package:notepad/local_services/note_service.dart';
 import 'package:notepad/screens/note_add_page.dart';
-import 'package:notepad/screens/note_detail_page.dart';
+import 'package:notepad/screens/note_edit_page.dart';
 import 'package:notepad/screens/notes_page.dart';
 
 void main() {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         initialRoute: NOTES_PAGE,
         routes: {
           NOTES_PAGE: (_) => NotesPage(),
-          NOTE_DETAIL_PAGE: (_) => NoteDetailPage(),
+          NOTE_EDIT_PAGE: (_) => NoteEditPage(),
           NOTE_ADD_PAGE: (_) => NoteAddPage(),
         },
       ),
